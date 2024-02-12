@@ -7,6 +7,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public enum Role {
 
-    USER;
+    USER,
+    ADMIN;
 
 }

@@ -27,7 +27,7 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("") // white list - 인증 불요
+                .requestMatchers("/api/v1/auth/**") // white list - 인증 불요
                 .permitAll()
                 .anyRequest() // white list 제외 인증 필요
                 .authenticated()
