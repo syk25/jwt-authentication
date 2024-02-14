@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import spring.jwtauthentication.user.User;
 
 @Data
 @Builder
@@ -15,7 +16,7 @@ public class Token {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     private String token;
 
@@ -26,4 +27,9 @@ public class Token {
     private boolean expired;
 
     private boolean revoked;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 }
