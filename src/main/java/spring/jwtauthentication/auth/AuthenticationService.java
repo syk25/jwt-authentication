@@ -35,9 +35,10 @@ public class AuthenticationService {
                 .build();
         User savedUser = repository.save(user);
         String jwtToken = jwtService.generateToken(user);
+        String refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
         return AuthenticationResponse.builder()
-                .token(jwtToken).build();
+                .accessToken(jwtToken).refreshToken(refreshToken).build();
     }
 
 
@@ -53,10 +54,11 @@ public class AuthenticationService {
         User user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
         String jwtToken = jwtService.generateToken(user);
+        String refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user,jwtToken);
         return AuthenticationResponse.builder()
-                .token(jwtToken).build();
+                .accessToken(jwtToken).refreshToken(refreshToken).build();
     }
 
     private void revokeAllUserTokens(User user) {
