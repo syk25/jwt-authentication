@@ -18,14 +18,22 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
+    /**
+     *       secret-key: 29a11a3c03f50ce72abc0884047fd00b22d1da9be7459956e07b511986a6971c
+     *       expiration: 86400000 # a day
+     *       refresh-token:
+     *         expiration: 604800000 # 7 days
+     */
+
+
     @Value("${application.security.jwt.secret-key}")
-    private static String secretKey;
+    private static final String secretKey = "29a11a3c03f50ce72abc0884047fd00b22d1da9be7459956e07b511986a6971c";
 
     @Value("${application.security.jwt.expiration}")
-    private long jwtExpiration;
+    private static long jwtExpiration = 86400000L;
 
     @Value("${application.security.jwt.refresh-token.expiration}")
-    private long refreshExpiration;
+    private long refreshExpiration = 604800000L;
 
 
     public String extractUsername(String token) {
